@@ -3,13 +3,16 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["PokedexApi/PokedexApi/PokedexApi.csproj", "PokedexApi/PokedexApi/"]
-RUN dotnet restore "PokedexApi/PokedexApi/PokedexApi.csproj"
+COPY ["PokedexApi/PokedexApi.csproj", "PokedexApi/"]
+COPY ["PokedexApi.Core/PokedexApi.Core.csproj", "PokedexApi.Core/"]
+COPY ["PokedexApi.Infrastructure/PokedexApi.Infrastructure.csproj", "PokedexApi.Infrastructure/"]
+RUN dotnet restore "PokedexApi/PokedexApi.csproj"
 COPY . .
-WORKDIR "/src/PokedexApi/PokedexApi"
+WORKDIR "/src/PokedexApi"
 RUN dotnet build "PokedexApi.csproj" -c Release -o /app/build
 
 FROM build AS publish

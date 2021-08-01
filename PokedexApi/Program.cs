@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
 
 namespace PokedexApi
 {
@@ -20,7 +17,15 @@ namespace PokedexApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseSerilog((ctx, cfg) =>
+                    {
+                        cfg.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                            .Enrich.FromLogContext()
+                            .Enrich.WithProperty("Application", ctx.HostingEnvironment.ApplicationName)
+                            .Enrich.WithProperty("Environment", ctx.HostingEnvironment.EnvironmentName)
+                            .WriteTo.Console(new RenderedCompactJsonFormatter());
+                    });
                 });
     }
 }
