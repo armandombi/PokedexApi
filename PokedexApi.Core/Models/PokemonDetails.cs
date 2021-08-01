@@ -8,6 +8,11 @@ namespace PokedexApi.Core.Models
 {
     public class PokemonDetails
     {
+        public PokemonDetails()
+        {
+
+        }
+
         public PokemonDetails(PokemonSpecies species)
         {
             Id = species.Id;

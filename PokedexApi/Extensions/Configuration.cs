@@ -22,8 +22,8 @@ namespace PokedexApi.Extensions
         {
             #region ConfigurationOptions
 
-            services.Configure<PokedexSettings>(configuration.GetSection(nameof(PokedexSettings)));
-
+            services.Configure<PokedexServiceSettings>(configuration.GetSection(nameof(PokedexServiceSettings)));
+            services.Configure<TranslationServiceSettings>(configuration.GetSection(nameof(TranslationServiceSettings)));
 
             #endregion ConfigurationOptions
         }

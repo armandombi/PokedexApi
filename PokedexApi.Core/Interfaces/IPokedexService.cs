@@ -9,6 +9,6 @@ namespace PokedexApi.Core.Interfaces
 {
     public interface IPokedexService
     {
-        Task<PokemonSpecies> GetPokemonSpeciesAsync<T>(T identifier);
+        Task<PokemonSpecies> GetPokemonSpecies<T>(T identifier);
     }
 }

@@ -2,10 +2,7 @@
 using PokedexApi.Core.Interfaces;
 using PokedexApi.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PokedexApi.Infrastructure.Services
@@ -18,12 +15,15 @@ namespace PokedexApi.Infrastructure.Services
             _httpClient = client;
         }
 
-        public async Task<PokemonSpecies> GetPokemonSpeciesAsync<T>(T identifier)
+        public async Task<PokemonSpecies> GetPokemonSpecies<T>(T identifier)
         {
             if (!IsAllowedType(typeof(T)))
                 throw new NotSupportedException("The identifier provided is not supported");
 
             var response = await _httpClient.GetAsync($"pokemon-species/{identifier}");
+
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                return null;
 
             response.EnsureSuccessStatusCode();
 

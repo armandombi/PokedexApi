@@ -24,9 +24,19 @@ namespace PokedexApi.Extensions
         {
             services.AddHttpClient<IPokedexService, PokedexService>((serviceProvider, client) =>
             {
-                var settings = serviceProvider.GetRequiredService<IOptions<PokedexSettings>>().Value;
+                var settings = serviceProvider.GetRequiredService<IOptions<PokedexServiceSettings>>().Value;
                 if (string.IsNullOrEmpty(settings.BaseUrl))
-                    throw new ArgumentNullException($"Base Url cannot be null or empty, please validate your {nameof(PokedexSettings)}");
+                    throw new ArgumentNullException($"Base Url cannot be null or empty, please validate your {nameof(PokedexServiceSettings)}");
+
+                client.BaseAddress = new Uri(settings.BaseUrl);
+                client.Timeout = TimeSpan.FromSeconds(settings.TimeoutSeconds);
+            });
+
+            services.AddHttpClient<ITranslationService, TranslationService>((serviceProvider, client) =>
+            {
+                var settings = serviceProvider.GetRequiredService<IOptions<TranslationServiceSettings>>().Value;
+                if (string.IsNullOrEmpty(settings.BaseUrl))
+                    throw new ArgumentNullException($"Base Url cannot be null or empty, please validate your {nameof(TranslationServiceSettings)}");
 
                 client.BaseAddress = new Uri(settings.BaseUrl);
                 client.Timeout = TimeSpan.FromSeconds(settings.TimeoutSeconds);
