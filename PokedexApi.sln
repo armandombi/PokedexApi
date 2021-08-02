@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokedexApi.Core", "PokedexApi.Core\PokedexApi.Core.csproj", "{11FA06AF-EC4D-463E-A3FF-96BA95EE13F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokedexApi.Core", "PokedexApi.Core\PokedexApi.Core.csproj", "{11FA06AF-EC4D-463E-A3FF-96BA95EE13F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokedexApi.Infrastructure", "PokedexApi.Infrastructure\PokedexApi.Infrastructure.csproj", "{9584A0DD-0810-4AFF-8CD6-9A387695D14A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokedexApi.Infrastructure", "PokedexApi.Infrastructure\PokedexApi.Infrastructure.csproj", "{9584A0DD-0810-4AFF-8CD6-9A387695D14A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokedexApi.Tests", "PokedexApi.Tests\PokedexApi.Tests.csproj", "{0B658057-1456-4548-B870-D23E34016104}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9584A0DD-0810-4AFF-8CD6-9A387695D14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9584A0DD-0810-4AFF-8CD6-9A387695D14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9584A0DD-0810-4AFF-8CD6-9A387695D14A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B658057-1456-4548-B870-D23E34016104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B658057-1456-4548-B870-D23E34016104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B658057-1456-4548-B870-D23E34016104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B658057-1456-4548-B870-D23E34016104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
