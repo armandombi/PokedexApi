@@ -3,8 +3,6 @@ using PokedexApi.Core.Interfaces;
 using PokedexApi.Core.Models;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
@@ -12,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace PokedexApi.Infrastructure.Services
 {
+    /// <summary>
+    /// Service to handle requests to the external translation api
+    /// </summary>
     public class TranslationService : ITranslationService
     {
         private readonly HttpClient _httpClient;
@@ -19,9 +20,13 @@ namespace PokedexApi.Infrastructure.Services
         public TranslationService(HttpClient client)
         {
             _httpClient = client;
-
         }
 
+        /// <summary>
+        /// Converts the given text into a shakespeare text
+        /// </summary>
+        /// <param name="text">The input text</param>
+        /// <returns>The converted text</returns>
         public async Task<string> GetShakespeareTranslation(string text)
         {
             try
@@ -39,26 +44,36 @@ namespace PokedexApi.Infrastructure.Services
                 Log.Error($"{MethodBase.GetCurrentMethod()?.DeclaringType} failed with exception {JsonConvert.SerializeObject(exception)}");
                 return null;
             }
-            
+
         }
 
+        /// <summary>
+        /// Get the translation of a pokemon detail's description
+        /// </summary>
+        /// <param name="pokemon">The pokemon details</param>
+        /// <returns>The pokemon details with a translated description</returns>
         public async Task<PokemonDetails> GetTranslatedDetails(PokemonDetails pokemon)
         {
-            
-                var translatedDescription = (pokemon.Habitat == "cave" || pokemon.IsLegendary) ?
-                                            await GetYodaTranslation(pokemon.Description) :
-                                            await GetShakespeareTranslation(pokemon.Description);
 
-                return new PokemonDetails
-                {
-                    Id = pokemon.Id,
-                    Name = pokemon.Name,
-                    Habitat = pokemon.Habitat,
-                    Description = translatedDescription ?? pokemon.Description,
-                    IsLegendary = pokemon.IsLegendary,
-                };
+            var translatedDescription = (pokemon.Habitat == "cave" || pokemon.IsLegendary) ?
+                                        await GetYodaTranslation(pokemon.Description) :
+                                        await GetShakespeareTranslation(pokemon.Description);
+
+            return new PokemonDetails
+            {
+                Id = pokemon.Id,
+                Name = pokemon.Name,
+                Habitat = pokemon.Habitat,
+                Description = translatedDescription ?? pokemon.Description,
+                IsLegendary = pokemon.IsLegendary,
+            };
         }
 
+        /// <summary>
+        /// Converts the given text into a yoda text
+        /// </summary>
+        /// <param name="text">The input text</param>
+        /// <returns>The converted text</returns>
         public async Task<string> GetYodaTranslation(string text)
         {
             try

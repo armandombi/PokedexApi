@@ -1,8 +1,8 @@
-﻿using System.IO.Compression;
-using System.Linq;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO.Compression;
+using System.Linq;
 
 namespace PokedexApi.Extensions
 {

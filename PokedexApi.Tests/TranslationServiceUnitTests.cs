@@ -3,12 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using PokedexApi.Core.Interfaces;
 using PokedexApi.Core.Models;
-using PokedexApi.Infrastructure.Services;
 using PokedexApi.Tests.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
