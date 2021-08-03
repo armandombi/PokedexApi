@@ -8,6 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 To run this code on your machine you will need to have the following installed:
+- Git to download the code, this tool can be downloaded [here](https://git-scm.com/downloads)
 - Latest version of Docker, which can be downloaded [here](https://docs.docker.com/get-docker/)
 - .Net Core 5, which can be downloaded [here](https://dotnet.microsoft.com/download)
 - A web browser such as Chrome, Edge, Firefox, etc.
@@ -52,4 +53,6 @@ git clone https://github.com/armandombi/PokedexApi.git
 - Add https configuration on docker
 - Add Authentication for the API endpoints
 - Use docker-compose / Kubernetes for a larger implementation of interconnected services
+- Scaling design / capabilities
+- CI / CD configuration
 - Add more fun endpoints (maybe a meme converter of some sort)
